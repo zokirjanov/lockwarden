@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LockWarden.DataAccess.Interfaces;
+using LockWarden.DataAccess.Interfaces.IRepositories;
+using LockWarden.DataAccess.Repositories;
+using LockWarden.Desktop.Pages.All_Records_Pages;
+using LockWarden.Desktop.Windows;
+using LockWarden.Service.Commons;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LockWarden.Desktop
 {
@@ -23,6 +18,88 @@ namespace LockWarden.Desktop
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
+            else
+                WindowState = WindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private async void FullNamePage_click(object sender, RoutedEventArgs e)
+        {
+
+            frameContent.Content = new Pages.FullNamePage();
+        }
+
+        private void LoginPage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.LoginPage();
+        }
+
+        private void CardPage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.CardPage();
+        }
+
+        private void NotePage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.NotePage();
+        }
+
+        private void ImagePage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.ImagePage();
+        }
+
+
+
+        private void TrashPage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.TrashPage();
+        }
+
+
+        private void MenuItem_Click_All(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.All_Records_Pages.All();
+        }
+
+        private void MenuItem_CardPage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.All_Records_Pages.Card();
+        }
+
+        private void MenuItem_NotePage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.All_Records_Pages.Note();
+        }
+
+        private void MenuItem_LoginPage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.All_Records_Pages.Allitems();
+        }
+
+        private void MenuItems_ImagePage_click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Content = new Pages.All_Records_Pages.Image();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

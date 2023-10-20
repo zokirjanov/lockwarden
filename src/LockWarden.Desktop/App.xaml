@@ -2,8 +2,34 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LockWarden.Desktop"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Windows/LoginWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Themes/Theme.xaml"/>
+                <ResourceDictionary Source="Assets/Icons/Icons.xaml"/>
+
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Styles/IconButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/MenuStyle.xaml"/>
+
+                <ResourceDictionary Source="Styles/LoginLabelStyle.xaml"/>
+                <ResourceDictionary Source="Styles/LoginTextBoxStyle.xaml"/>
+
+                <ResourceDictionary Source="Styles/FullNamePageTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/RichTextBoxStyle.xaml"/>
+
+                <ResourceDictionary Source="Styles/ScrollViewer.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!--Image-->
+            <BitmapImage x:Key="loginlogo" UriSource="\Assets\Images\LoginLogo.png"></BitmapImage>
+            <BitmapImage x:Key="panellogin" UriSource="\Assets\Images\LogoPanel.jpg"></BitmapImage>
+            
+            
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

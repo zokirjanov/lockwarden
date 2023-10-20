@@ -1,0 +1,201 @@
+﻿<Window x:Class="LockWarden.Desktop.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LockWarden.Desktop.Windows"
+        xmlns:components="clr-namespace:LockWarden.Desktop.Components"
+        mc:Ignorable="d"
+        Height="600" Width="800"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Icon="/Assets/icons/lockwarden.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+              Background="Transparent">
+            <Border Background="{StaticResource PrimaryTextColor}"
+                    BorderBrush="{StaticResource TertiaryTealColor}"
+                    BorderThickness="1 1 0 1"
+                    CornerRadius="15 0 0 15"
+                    MouseLeftButtonDown="Border_MouseLeftButtonDown"
+                    Cursor="ScrollAll">
+                <components:LockEllipseUserControl/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="Transparent">
+
+            <Border BorderBrush="{StaticResource TertiaryTealColor}"
+                Grid.Column="1"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown_1"
+                Cursor="ScrollAll"
+                Background="#050E2A"
+                BorderThickness="0 1 1 1"
+                CornerRadius="0 15 15 0">
+
+                <Grid>
+                    <Button Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}"  Cursor="Arrow" Click="Button_Click" Margin="350,-15,0,554"/>
+                    <Button Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource minimize}" Cursor="Arrow" Click="Button_Click_1" Margin="336,2,38,571"/>
+
+                    <Border x:Name="LoginBorder"
+                            Margin="35,35,35,35"
+                            Cursor="Arrow"
+                            CornerRadius="15"
+                            BorderThickness="1" Visibility="Visible">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/Images/LogoPanel.jpg" Opacity="0.4" Stretch="Fill"/>
+                        </Border.Background>
+
+                        <StackPanel x:Name="LoginStackPanel" Margin="10">
+
+                            <Label Content="Username" Style="{StaticResource LoginLabelStyle}" Margin="0,135,0,0"/>
+                            <Border x:Name="emailBorder" BorderThickness="1"
+                                    BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                    Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="username" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtemail"  TextChanged="txtemail_TextChanged" Style="{StaticResource LoginTextBoxStyle}"/>
+                                </Grid>
+                            </Border>
+
+                            <Label Content="Password" Style="{StaticResource LoginLabelStyle}" Margin="0 20 0 0"/>
+                           
+                            <Border x:Name="passwordBorder" BorderThickness="1"
+                                    BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                    Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="password" Style="{StaticResource textHint}"/>
+                                    <PasswordBox x:Name="txtPasswords" PasswordChanged="txtPasswords_PasswordChanged" Style="{StaticResource LoginPasswordBox}"/>
+                                </Grid>
+                            </Border>
+                            
+                            <Border x:Name="passwordBorder2" BorderThickness="1" Visibility="Collapsed"
+                                    BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                    Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textPasswordbox" MouseDown="textPasswordbox_MouseDown" Text="password" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtPasswordbox" TextChanged="txtPasswordbox_TextChanged" Style="{StaticResource LoginTextBoxStyle}"/>
+                                </Grid>
+                            </Border>
+
+                            <CheckBox  x:Name="btnCheckbox"
+                                       Margin="10 10 0 0"
+                                       Checked="CheckBox_Changed" 
+                                       Unchecked="CheckBox_Changed"
+                                       Content="Show Password"
+                                       Foreground="{DynamicResource TertiaryBlueColor}"
+                                       FontSize="15"
+                                       FontFamily="Arial"
+                                       FontWeight="Medium" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                            </CheckBox>
+
+                            <Button Content="Login" Style="{StaticResource FormPrimaryButton}" Click="Login_button"  IsDefault="True"/>
+                            <Button Content="Register" Style="{StaticResource FormSuccessButton}" Width="304" Click="Register_button" Height="50"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!--Register Border -->
+
+                    <Border x:Name="RegsBorder"
+                            Margin="35,35,35,35"
+                            Cursor="Arrow"
+                            CornerRadius="15"
+                            BorderThickness="1" Visibility="Collapsed">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Assets/Images/regsImg.jpg" Opacity="0.4" Stretch="Fill"/>
+                            </Border.Background>
+                        <StackPanel x:Name="RegsStackPanle" Margin="10">
+
+                            <Label Content="Full Name" Style="{StaticResource LoginLabelStyle}" Margin="0 60 0 0"/>
+                            <Border x:Name="RegsFullnameBorder" BorderThickness="1"
+                                    BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                    Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textFullname" MouseDown="textFullname_MouseDown" Text="John Doe" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtFullname" TextChanged="txtFullname_TextChanged"  Style="{StaticResource LoginTextBoxStyle }"/>
+                                </Grid>
+                            </Border>
+
+                            <Label Content="Username" Style="{StaticResource LoginLabelStyle}" Margin="0 20 0 0"/>
+                            <Border x:Name="RegsEmailBorder" BorderThickness="1"
+                                    BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                    Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textEmailRegs" MouseDown="textEmailRegs_MouseDown_1" Text="username" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtEmailRegs" TextChanged="txtEmailRegs_TextChanged_1"  Style="{StaticResource LoginTextBoxStyle }"/>
+                                </Grid>
+                            </Border>
+
+                            <Label Content="Password" Style="{StaticResource LoginLabelStyle}" Margin="0 20 0 0"/>
+                            <Border  x:Name="RegsPasswordBorder" BorderThickness="1"
+                                     BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                     Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textPasswordRegs" MouseDown="textPasswordRegs_MouseDown" Text="Your password" Style="{StaticResource textHint}"/>
+                                    <PasswordBox x:Name="txtpaswordRegs" PasswordChanged="txtpaswordRegs_PasswordChanged" Style="{StaticResource LoginPasswordBox}"/>
+                                </Grid>
+                            </Border>
+                             
+                            <!--hidden box-->
+                            <Border  x:Name="RegsPasswordBorderHidden" BorderThickness="1" Visibility="Collapsed"
+                                     BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                     Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textPasswordRegshidden" MouseDown="textPasswordRegs_MouseDownhidden" Text="Your password" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtpaswordRegshidden" TextChanged="txtpaswordRegs_PasswordChangedhidden" Style="{StaticResource LoginTextBoxStyle}"/>
+                                </Grid>
+                            </Border>
+
+                            <Label Content="Verify" Style="{StaticResource LoginLabelStyle}" Margin="0 20 0 0"/>
+                            
+                            <Border  x:Name="RegsVerifyBorder" BorderThickness="1"
+                                     BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                     Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textVerify" MouseDown="textVerify_MouseDown" Text="Verify Your Password" Style="{StaticResource textHint}"/>
+                                    <PasswordBox x:Name="txtVerify" PasswordChanged="txtVerify_PasswordChanged" Style="{StaticResource LoginPasswordBox}"/>
+                                </Grid>
+                            </Border>
+                            
+                            <!--hidden box-->
+                            <Border  x:Name="RegsVerifyBorderhidden" BorderThickness="1" Visibility='Collapsed'
+                                     BorderBrush="{StaticResource TertiaryBlueColor}" Background="{StaticResource PrimaryGrayColor}" Opacity="0.7"
+                                     Height="30" Width="300" CornerRadius="9" Margin="0">
+                                <Grid>
+                                    <TextBlock x:Name="textVerifyhidden" MouseDown="textVerify_MouseDownhidden" Text="Verify Your Password" Style="{StaticResource textHint}"/>
+                                    <TextBox x:Name="txtVerifyhidden" TextChanged="txtVerify_PasswordChangedhidden" Style="{StaticResource LoginTextBoxStyle}"/>
+                                </Grid>
+                            </Border>
+
+                            <CheckBox  x:Name="btnCheckboxregs"
+                                       Margin="10 10 0 0"
+                                       Checked="CheckBox_Changed_Regs" 
+                                       Unchecked="CheckBox_Changed_Regs"
+                                       Content="Show Password"
+                                       Foreground="{DynamicResource TertiaryBlueColor}"
+                                       FontSize="15"
+                                       FontFamily="Arial"
+                                       FontWeight="Medium" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                            </CheckBox>
+
+                            <Button Content="Register" Style="{StaticResource FormPrimaryButton}" Click="Register_verify_button" Width="302" Height="40" Margin="0 20 0 0" IsDefault="True" />
+                            <Button Content="←" Style="{StaticResource RegisterBackStyle}" Click="register_back" IsCancel="True" />
+                        </StackPanel>
+                        
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
